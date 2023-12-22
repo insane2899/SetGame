@@ -21,7 +21,7 @@ struct SetModel {
     private(set) var displayedCards: [Card]
     private(set) var selectedCards: [Card]
 
-    init() {
+    init(initialCardCount: Int = 10) {
         displayedCards = []
         selectedCards = []
         deckCards = []
@@ -30,10 +30,20 @@ struct SetModel {
             for count in CardCount.allCases {
                 for shade in CardShade.allCases {
                     for color in CardColor.allCases {
-                        deckCards.append(Card(shape: shape, count: count, shade: shade, color: color))
+                        deckCards.append(Card(id: hashCard(shape, count, shade, color),
+                                              shape: shape,
+                                              count: count,
+                                              shade: shade,
+                                              color: color))
                     }
                 }
             }
+        }
+        deckCards.shuffle()
+        var index = 0
+        while(deckCards.count > 0 && index < initialCardCount) {
+            displayedCards.append(deckCards.removeFirst())
+            index += 1
         }
     }
     
@@ -78,6 +88,14 @@ struct SetModel {
             reqColor = CardColor.allCases.filter( { $0 != card1.color && $0 != card2.color }).first
         }
         // FIXME: Used forced unwrap to test. Must change it to some concrete solution that won't cause crash later
-        return Card(shape: reqShape!, count: reqCount!, shade: reqShade!, color: reqColor!)
+        return Card(id: hashCard(reqShape!, reqCount!, reqShade!, reqColor!),
+                    shape: reqShape!,
+                    count: reqCount!,
+                    shade: reqShade!,
+                    color: reqColor!)
+    }
+
+    func hashCard(_ shape: Card.CardShape, _ count: Card.CardCount, _ shade: Card.CardShade, _ color: Card.CardColor) -> Int {
+        return 1000*shape.rawValue + 100*count.rawValue + 10*shade.rawValue + color.rawValue
     }
 }

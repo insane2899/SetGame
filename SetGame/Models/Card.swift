@@ -8,33 +8,34 @@
 import Foundation
 
 extension SetModel {
-    struct Card: Equatable {
+    struct Card: Equatable, Identifiable {
+        var id: Int
         let shape: CardShape
         let count: CardCount
         let shade: CardShade
         let color: CardColor
-        enum CardShape: Equatable, CaseIterable {
-            case diamond
-            case squiggly
-            case oval
+        enum CardShape: Int, Equatable, CaseIterable {
+            case diamond = 1
+            case squiggly = 2
+            case oval = 3
         }
 
-        enum CardCount: Equatable, CaseIterable {
-            case one
-            case two
-            case three
+        enum CardCount: Int, Equatable, CaseIterable {
+            case one = 1
+            case two = 2
+            case three = 3
         }
 
-        enum CardShade: Equatable, CaseIterable {
-            case solid
-            case striped
-            case squiggly
+        enum CardShade: Int, Equatable, CaseIterable {
+            case solid = 1
+            case striped = 2
+            case squiggly = 3
         }
 
-        enum CardColor: Equatable, CaseIterable {
-            case red
-            case green
-            case purple
+        enum CardColor: Int, Equatable, CaseIterable {
+            case red = 1
+            case green = 2
+            case purple = 3
         }
     }
 }

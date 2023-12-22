@@ -11,12 +11,14 @@
 		030D7D002B317CBA00C9D6C3 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D7CFF2B317CBA00C9D6C3 /* SetView.swift */; };
 		030D7D022B317CBB00C9D6C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 030D7D012B317CBB00C9D6C3 /* Assets.xcassets */; };
 		030D7D052B317CBB00C9D6C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 030D7D042B317CBB00C9D6C3 /* Preview Assets.xcassets */; };
-		030D7D102B317D4400C9D6C3 /* SetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D7D0F2B317D4400C9D6C3 /* SetConstants.swift */; };
 		030D7D122B317DB700C9D6C3 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D7D112B317DB700C9D6C3 /* Cards.swift */; };
 		030D7D142B317FCD00C9D6C3 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D7D132B317FCD00C9D6C3 /* AspectVGrid.swift */; };
 		035387A52B3311BF00C5EB19 /* SetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035387A42B3311BF00C5EB19 /* SetViewModel.swift */; };
 		035387A72B3311DA00C5EB19 /* SetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035387A62B3311DA00C5EB19 /* SetModel.swift */; };
 		035387A92B331E9D00C5EB19 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035387A82B331E9D00C5EB19 /* Card.swift */; };
+		03B886132B3593E800D8E86F /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886122B3593E800D8E86F /* Diamond.swift */; };
+		03B886152B35980B00D8E86F /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886142B35980B00D8E86F /* Oval.swift */; };
+		03B886172B359C4700D8E86F /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886162B359C4700D8E86F /* Squiggle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,12 +27,14 @@
 		030D7CFF2B317CBA00C9D6C3 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
 		030D7D012B317CBB00C9D6C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		030D7D042B317CBB00C9D6C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		030D7D0F2B317D4400C9D6C3 /* SetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetConstants.swift; sourceTree = "<group>"; };
 		030D7D112B317DB700C9D6C3 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		030D7D132B317FCD00C9D6C3 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		035387A42B3311BF00C5EB19 /* SetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewModel.swift; sourceTree = "<group>"; };
 		035387A62B3311DA00C5EB19 /* SetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetModel.swift; sourceTree = "<group>"; };
 		035387A82B331E9D00C5EB19 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		03B886122B3593E800D8E86F /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		03B886142B35980B00D8E86F /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
+		03B886162B359C4700D8E86F /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,7 @@
 		030D7CFC2B317CBA00C9D6C3 /* SetGame */ = {
 			isa = PBXGroup;
 			children = (
-				030D7D0E2B317D3200C9D6C3 /* Utils */,
+				03B886112B35793E00D8E86F /* Shape */,
 				030D7D0D2B317D2200C9D6C3 /* Views */,
 				030D7D0C2B317D1A00C9D6C3 /* ViewModels */,
 				030D7D0B2B317D1200C9D6C3 /* Models */,
@@ -109,12 +113,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		030D7D0E2B317D3200C9D6C3 /* Utils */ = {
+		03B886112B35793E00D8E86F /* Shape */ = {
 			isa = PBXGroup;
 			children = (
-				030D7D0F2B317D4400C9D6C3 /* SetConstants.swift */,
+				03B886122B3593E800D8E86F /* Diamond.swift */,
+				03B886142B35980B00D8E86F /* Oval.swift */,
+				03B886162B359C4700D8E86F /* Squiggle.swift */,
 			);
-			path = Utils;
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,11 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B886172B359C4700D8E86F /* Squiggle.swift in Sources */,
 				030D7D002B317CBA00C9D6C3 /* SetView.swift in Sources */,
 				030D7CFE2B317CBA00C9D6C3 /* SetGameApp.swift in Sources */,
 				035387A72B3311DA00C5EB19 /* SetModel.swift in Sources */,
-				030D7D102B317D4400C9D6C3 /* SetConstants.swift in Sources */,
+				03B886152B35980B00D8E86F /* Oval.swift in Sources */,
 				035387A52B3311BF00C5EB19 /* SetViewModel.swift in Sources */,
+				03B886132B3593E800D8E86F /* Diamond.swift in Sources */,
 				030D7D142B317FCD00C9D6C3 /* AspectVGrid.swift in Sources */,
 				030D7D122B317DB700C9D6C3 /* Cards.swift in Sources */,
 				035387A92B331E9D00C5EB19 /* Card.swift in Sources */,

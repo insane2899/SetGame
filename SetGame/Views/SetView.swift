@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct SetView: View {
+    typealias Card = SetModel.Card
+    @StateObject var viewModel = SetViewModel()
+    private let gameTitle: String = "Game of Set"
+
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                title
-                Divider()
-                cards
-            }
+        VStack(spacing: 0) {
+            title
+            Divider()
+            cards
+                .font(.largeTitle)
+            Spacer()
         }
     }
 
     var title: some View {
-        Text(SetConstants.gameTitle)
+        Text(gameTitle)
             .font(.largeTitle)
             .fontWeight(.bold)
             .foregroundColor(.blue)
@@ -28,13 +32,33 @@ struct SetView: View {
 
     @ViewBuilder
     var cards: some View {
-        let cardsArray: [Int] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        AspectVGrid(itemArray: cardsArray) { card in
-            Cards()
+        AspectVGrid(itemArray: viewModel.displayedCards) { card in
+            Cards(content: getCardContent(of: card))
                 .padding(5)
                 .onTapGesture {
                     // TODO: Implement Tap
                 }
+        }
+    }
+
+    @ViewBuilder
+    func getCardContent(of card: Card) -> some View {
+        VStack (spacing: 5) {
+            ForEach(0 ..< card.count.rawValue) { _ in
+                drawShape(card.shape)
+            }
+        }
+    }
+
+    @ViewBuilder
+    func drawShape(_ shape: Card.CardShape) -> some View {
+        switch shape {
+        case .diamond:
+            Diamond()
+        case .oval:
+            Oval()
+        case .squiggly:
+            Squiggle()
         }
     }
 }

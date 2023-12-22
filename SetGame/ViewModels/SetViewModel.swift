@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SetViewModel: ObservableObject {
     
     typealias Card = SetModel.Card
     
-    @Published var gameModel: SetModel = SetModel()
+    @Published var gameModel: SetModel
+    
+    init() {
+        gameModel = SetModel()
+    }
 
     // MARK: - Exposed Model Vars
     var displayedCards: [Card] {
@@ -21,4 +26,6 @@ class SetViewModel: ObservableObject {
     var matched: Bool {
         return gameModel.matched
     }
+
+    // MARK: - Intents
 }

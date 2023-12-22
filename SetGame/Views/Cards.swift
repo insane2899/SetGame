@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct Cards: View {
+struct Cards<Content: View>: View {
+    var content: Content
     var body: some View {
-        RoundedRectangle(cornerRadius: 5)
-            .stroke(lineWidth: 5)
-        
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(lineWidth: 2)
+            content
+                .aspectRatio(1, contentMode: .fit)
+        }
     }
-}
-
-#Preview {
-    Cards()
 }
