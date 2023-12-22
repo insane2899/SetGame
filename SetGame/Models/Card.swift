@@ -29,7 +29,7 @@ extension SetModel {
         enum CardShade: Int, Equatable, CaseIterable {
             case solid = 1
             case striped = 2
-            case squiggly = 3
+            case open = 3
         }
 
         enum CardColor: Int, Equatable, CaseIterable {

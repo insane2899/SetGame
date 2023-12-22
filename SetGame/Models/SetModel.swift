@@ -21,7 +21,7 @@ struct SetModel {
     private(set) var displayedCards: [Card]
     private(set) var selectedCards: [Card]
 
-    init(initialCardCount: Int = 10) {
+    init(initialCardCount: Int = 50) {
         displayedCards = []
         selectedCards = []
         deckCards = []

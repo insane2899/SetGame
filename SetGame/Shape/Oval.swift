@@ -20,9 +20,9 @@ struct Oval: Shape {
         var p = Path()
         p.move(to: leftTopPoint)
         p.addLine(to: rightTopPoint)
-        p.addLine(to: rightBottomPoint)
+        p.move(to: rightBottomPoint)
         p.addLine(to: leftBottomPoint)
-        p.addLine(to: leftTopPoint)
+        p.move(to: leftTopPoint)
         p.move(to: rightTopPoint)
         // Drawing direction of arc matters it seems
         p.addArc(center: CGPoint(x: rect.midX + (rect.midX/3), y: rect.midY),

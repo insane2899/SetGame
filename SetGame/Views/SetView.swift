@@ -43,22 +43,29 @@ struct SetView: View {
 
     @ViewBuilder
     func getCardContent(of card: Card) -> some View {
-        VStack (spacing: 5) {
+        VStack (spacing: 10) {
             ForEach(0 ..< card.count.rawValue) { _ in
-                drawShape(card.shape)
+                switch card.shape {
+                case .diamond:
+                    drawCardUsing(shape: Diamond(), shade: card.shade, color: card.color)
+                case .oval:
+                    drawCardUsing(shape: Oval(), shade: card.shade, color: card.color)
+                case .squiggly:
+                    drawCardUsing(shape: Squiggle(), shade: card.shade, color: card.color)
+                }
             }
         }
     }
 
     @ViewBuilder
-    func drawShape(_ shape: Card.CardShape) -> some View {
-        switch shape {
-        case .diamond:
-            Diamond()
-        case .oval:
-            Oval()
-        case .squiggly:
-            Squiggle()
+    func drawCardUsing<GivenShape: Shape>(shape: GivenShape, shade: Card.CardShade, color: Card.CardColor) -> some View {
+        switch shade {
+        case .open:
+            shape.stroke(lineWidth: 1)
+        case .solid:
+            shape.fill()
+        case .striped:
+            shape.fill().opacity(0.5)
         }
     }
 }
