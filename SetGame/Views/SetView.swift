@@ -36,7 +36,7 @@ struct SetView: View {
             Cards(content: getCardContent(of: card))
                 .padding(5)
                 .onTapGesture {
-                    // TODO: Implement Tap
+                    viewModel.selectCard(card)
                 }
         }
     }
@@ -59,13 +59,14 @@ struct SetView: View {
 
     @ViewBuilder
     func drawCardUsing<GivenShape: Shape>(shape: GivenShape, shade: Card.CardShade, color: Card.CardColor) -> some View {
+        let colorToUse = viewModel.getColor(color)
         switch shade {
         case .open:
-            shape.stroke(lineWidth: 1)
+            shape.stroke(colorToUse, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
         case .solid:
-            shape.fill()
+            shape.fill(colorToUse)
         case .striped:
-            shape.fill().opacity(0.5)
+            StripeView(shape, using: colorToUse)
         }
     }
 }

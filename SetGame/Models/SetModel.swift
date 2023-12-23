@@ -21,7 +21,7 @@ struct SetModel {
     private(set) var displayedCards: [Card]
     private(set) var selectedCards: [Card]
 
-    init(initialCardCount: Int = 50) {
+    init(initialCardCount: Int = 12) {
         displayedCards = []
         selectedCards = []
         deckCards = []
@@ -48,54 +48,91 @@ struct SetModel {
     }
     
     var matched: Bool {
-        if selectedCards.count == 3,
-           selectedCards[2] == thirdCard! { // FIXME: Used forced unwrap to test. Must change it to some concrete solution that won't cause crash later
-            return true
+        if selectedCards.count == 3 {
+            var shapeSet = Set<CardShape>()
+            var countSet = Set<CardCount>()
+            var shadeSet = Set<CardShade>()
+            var colorSet = Set<CardColor>()
+            for card in selectedCards {
+                shapeSet.insert(card.shape)
+                countSet.insert(card.count)
+                shadeSet.insert(card.shade)
+                colorSet.insert(card.color)
+            }
+            return shapeSet.count != 2 && countSet.count != 2 && shadeSet.count != 2 && colorSet.count != 2
         }
         return false
     }
     
     var thirdCard: Card? {
-        if selectedCards.count != 2 {
+        guard selectedCards.count == 2 else {
             return nil
         }
-        return createSetCard(using: selectedCards[0], and: selectedCards[1])
+        let shape: CardShape = getCardContent(allCases: Set<CardShape>([.diamond, .oval, .squiggly]),
+                                                    presentCases: [selectedCards[0].shape, selectedCards[1].shape])
+        let count: CardCount = getCardContent(allCases: Set<CardCount>([.one, .two, .three]),
+                                                    presentCases: [selectedCards[0].count, selectedCards[1].count])
+        let shade: CardShade = getCardContent(allCases: Set<CardShade>([.open, .solid, .striped]),
+                                                    presentCases: [selectedCards[0].shade, selectedCards[1].shade])
+        let color: CardColor = getCardContent(allCases: Set<CardColor>([.red, .green, .purple]),
+                                                    presentCases: [selectedCards[0].color, selectedCards[1].color])
+        return Card(id: hashCard(shape, count, shade, color),
+                    shape: shape, count: count, shade: shade, color: color)
     }
-
-    func createSetCard(using card1: Card, and card2: Card) -> Card {
-        var reqShape: CardShape?
-        var reqCount: CardCount?
-        var reqShade: CardShade?
-        var reqColor: CardColor?
-        if card1.shape == card2.shape {
-            reqShape = card1.shape
-        } else {
-            reqShape = CardShape.allCases.filter( { $0 != card1.shape && $0 != card2.shape }).first
+    
+    func getCardContent<Property>(allCases: Set<Property>, presentCases: [Property]) -> Property {
+        var allCases = allCases
+        for cases in presentCases {
+            allCases.remove(cases)
         }
-        if card1.count == card2.count {
-            reqCount = card1.count
+        if allCases.count == 1 {
+            return allCases.first!  // FIXME: - Forced unwrap
         } else {
-            reqCount = CardCount.allCases.filter( { $0 != card1.count && $0 != card2.count }).first
+            return presentCases[0]
         }
-        if card1.shade == card2.shade {
-            reqShade = card1.shade
-        } else {
-            reqShade = CardShade.allCases.filter( { $0 != card1.shade && $0 != card2.shade }).first
-        }
-        if card1.color == card2.color {
-            reqColor = card1.color
-        } else {
-            reqColor = CardColor.allCases.filter( { $0 != card1.color && $0 != card2.color }).first
-        }
-        // FIXME: Used forced unwrap to test. Must change it to some concrete solution that won't cause crash later
-        return Card(id: hashCard(reqShape!, reqCount!, reqShade!, reqColor!),
-                    shape: reqShape!,
-                    count: reqCount!,
-                    shade: reqShade!,
-                    color: reqColor!)
     }
 
     func hashCard(_ shape: Card.CardShape, _ count: Card.CardCount, _ shade: Card.CardShade, _ color: Card.CardColor) -> Int {
         return 1000*shape.rawValue + 100*count.rawValue + 10*shade.rawValue + color.rawValue
+    }
+
+    private mutating func removeCardFromDeck(_ card: Card) {
+        if let indexToRemove = deckCards.indices.filter( { deckCards[$0].id == card.id } ).first {
+            deckCards.remove(at: indexToRemove)
+        }
+    }
+
+    private mutating func removeCardFromSelectedCards(_ card: Card) {
+        if let indexToRemove = selectedCards.indices.filter( { selectedCards[$0].id == card.id } ).first {
+            selectedCards.remove(at: indexToRemove)
+        }
+    }
+    
+    private mutating func removeCardFromDisplayedCards(_ card: Card) {
+        if let indexToRemove = displayedCards.indices.filter( { displayedCards[$0].id == card.id } ).first {
+            displayedCards.remove(at: indexToRemove)
+        }
+    }
+
+    // MARK: - ViewModel Calls
+
+    mutating func selectCard(_ card: Card) {
+        if matched {
+            for card in selectedCards {
+                removeCardFromDisplayedCards(card)
+            }
+            selectedCards = []
+        }
+        if !selectedCards.contains(where: { $0.id == card.id }) {
+            selectedCards.append(card)
+        } else {
+            removeCardFromSelectedCards(card)
+        }
+    }
+
+    mutating func dealThreeCards() {
+        for _ in 0..<3 {
+            displayedCards.append(deckCards.removeFirst())
+        }
     }
 }

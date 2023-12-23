@@ -19,6 +19,8 @@
 		03B886132B3593E800D8E86F /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886122B3593E800D8E86F /* Diamond.swift */; };
 		03B886152B35980B00D8E86F /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886142B35980B00D8E86F /* Oval.swift */; };
 		03B886172B359C4700D8E86F /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B886162B359C4700D8E86F /* Squiggle.swift */; };
+		03BE8B862B36E85500DEFC38 /* StripeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BE8B852B36E85500DEFC38 /* StripeView.swift */; };
+		03BE8B882B36EBFC00DEFC38 /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BE8B872B36EBFC00DEFC38 /* Stripe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		03B886122B3593E800D8E86F /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		03B886142B35980B00D8E86F /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
 		03B886162B359C4700D8E86F /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
+		03BE8B852B36E85500DEFC38 /* StripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeView.swift; sourceTree = "<group>"; };
+		03BE8B872B36EBFC00DEFC38 /* Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stripe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 				030D7CFF2B317CBA00C9D6C3 /* SetView.swift */,
 				030D7D112B317DB700C9D6C3 /* Cards.swift */,
 				030D7D132B317FCD00C9D6C3 /* AspectVGrid.swift */,
+				03BE8B852B36E85500DEFC38 /* StripeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				03B886122B3593E800D8E86F /* Diamond.swift */,
 				03B886142B35980B00D8E86F /* Oval.swift */,
 				03B886162B359C4700D8E86F /* Squiggle.swift */,
+				03BE8B872B36EBFC00DEFC38 /* Stripe.swift */,
 			);
 			path = Shape;
 			sourceTree = "<group>";
@@ -195,8 +201,10 @@
 			files = (
 				03B886172B359C4700D8E86F /* Squiggle.swift in Sources */,
 				030D7D002B317CBA00C9D6C3 /* SetView.swift in Sources */,
+				03BE8B882B36EBFC00DEFC38 /* Stripe.swift in Sources */,
 				030D7CFE2B317CBA00C9D6C3 /* SetGameApp.swift in Sources */,
 				035387A72B3311DA00C5EB19 /* SetModel.swift in Sources */,
+				03BE8B862B36E85500DEFC38 /* StripeView.swift in Sources */,
 				03B886152B35980B00D8E86F /* Oval.swift in Sources */,
 				035387A52B3311BF00C5EB19 /* SetViewModel.swift in Sources */,
 				03B886132B3593E800D8E86F /* Diamond.swift in Sources */,

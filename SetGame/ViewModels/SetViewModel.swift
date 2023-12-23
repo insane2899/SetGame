@@ -27,5 +27,20 @@ class SetViewModel: ObservableObject {
         return gameModel.matched
     }
 
+    func getColor(_ color: Card.CardColor) -> Color {
+        switch color {
+        case .red:
+            return .red
+        case .green:
+            return .green
+        case .purple:
+            return .purple
+        }
+    }
+
     // MARK: - Intents
+
+    func selectCard(_ card: Card) {
+        gameModel.selectCard(card)
+    }
 }

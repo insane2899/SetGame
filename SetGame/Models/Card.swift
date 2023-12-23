@@ -8,7 +8,7 @@
 import Foundation
 
 extension SetModel {
-    struct Card: Equatable, Identifiable {
+    struct Card: Equatable, Identifiable, Hashable {
         var id: Int
         let shape: CardShape
         let count: CardCount
