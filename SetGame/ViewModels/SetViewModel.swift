@@ -23,7 +23,7 @@ class SetViewModel: ObservableObject {
         return gameModel.displayedCards
     }
 
-    var matched: Bool {
+    var isMatched: Bool {
         return gameModel.matched
     }
 
@@ -42,5 +42,9 @@ class SetViewModel: ObservableObject {
 
     func selectCard(_ card: Card) {
         gameModel.selectCard(card)
+    }
+
+    func cardIsSelected(_ card: Card) -> Bool {
+        gameModel.cardIsSelected(card)
     }
 }

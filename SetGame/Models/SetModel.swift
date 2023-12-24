@@ -39,7 +39,7 @@ struct SetModel {
                 }
             }
         }
-        deckCards.shuffle()
+//        deckCards.shuffle() //FIXME: - Commented for now to test
         var index = 0
         while(deckCards.count > 0 && index < initialCardCount) {
             displayedCards.append(deckCards.removeFirst())
@@ -121,7 +121,11 @@ struct SetModel {
             for card in selectedCards {
                 removeCardFromDisplayedCards(card)
             }
-            selectedCards = []
+            selectedCards.removeAll()
+            dealThreeCards()
+        }
+        if selectedCards.count == 3 && !matched {
+            selectedCards.removeAll()
         }
         if !selectedCards.contains(where: { $0.id == card.id }) {
             selectedCards.append(card)
@@ -131,8 +135,12 @@ struct SetModel {
     }
 
     mutating func dealThreeCards() {
-        for _ in 0..<3 {
+        for _ in 0..<min(3, deckCards.count) {
             displayedCards.append(deckCards.removeFirst())
         }
+    }
+
+    func cardIsSelected(_ card: Card) -> Bool {
+        return selectedCards.contains(where: { $0.id == card.id })
     }
 }

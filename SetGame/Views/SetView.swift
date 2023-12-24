@@ -34,6 +34,9 @@ struct SetView: View {
     var cards: some View {
         AspectVGrid(itemArray: viewModel.displayedCards) { card in
             Cards(content: getCardContent(of: card))
+                .overlay(Rectangle()
+                    .foregroundColor(viewModel.isMatched ? .green : .gray)
+                    .opacity(viewModel.cardIsSelected(card) ? 0.5 : 0.0))
                 .padding(5)
                 .onTapGesture {
                     viewModel.selectCard(card)

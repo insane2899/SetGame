@@ -19,6 +19,7 @@ struct StripeView<Content: Shape>: View {
     var body: some View {
         content
             .stroke(lineWidth: 1)
+            .foregroundColor(color)
             .overlay {
                 Stripe()
                     .stroke(color, lineWidth: 1)
