@@ -12,7 +12,7 @@ class SetViewModel: ObservableObject {
     
     typealias Card = SetModel.Card
     
-    @Published var gameModel: SetModel
+    @Published private var gameModel: SetModel
     
     init() {
         gameModel = SetModel()
@@ -25,6 +25,10 @@ class SetViewModel: ObservableObject {
 
     var isMatched: Bool {
         return gameModel.matched
+    }
+    
+    var deckCards: [Card] {
+        return gameModel.deckCards
     }
 
     func getColor(_ color: Card.CardColor) -> Color {
@@ -46,5 +50,9 @@ class SetViewModel: ObservableObject {
 
     func cardIsSelected(_ card: Card) -> Bool {
         gameModel.cardIsSelected(card)
+    }
+
+    func dealACard() {
+        gameModel.dealACard()
     }
 }

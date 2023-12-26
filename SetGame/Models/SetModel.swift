@@ -139,6 +139,12 @@ struct SetModel {
             displayedCards.append(deckCards.removeFirst())
         }
     }
+    
+    mutating func dealACard() {
+        if deckCards.count > 1 {
+            displayedCards.append(deckCards.removeFirst())
+        }
+    }
 
     func cardIsSelected(_ card: Card) -> Bool {
         return selectedCards.contains(where: { $0.id == card.id })

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetView: View {
+    @Namespace var setCardSpace
     typealias Card = SetModel.Card
     @StateObject var viewModel = SetViewModel()
     private let gameTitle: String = "Game of Set"
@@ -19,6 +20,31 @@ struct SetView: View {
             cards
                 .font(.largeTitle)
             Spacer()
+            Divider()
+            deck
+        }
+    }
+
+    var deck: some View {
+        ZStack {
+            ForEach(viewModel.deckCards) { card in
+                Cards(content: getCardContent(of: card))
+                    .frame(width: 60, height: 80)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                    }
+                    .onTapGesture {
+                        var delay: TimeInterval = 0.0
+                        for _ in 0..<3 {
+                            withAnimation(.easeIn(duration: 0.2).delay(delay)) {
+                                viewModel.dealACard()
+                            }
+                            delay += 0.15
+                        }
+                    }
+                    .matchedGeometryEffect(id: card.id, in: setCardSpace)
+                    .transition(.asymmetric(insertion: .identity, removal: .identity))
+            }
         }
     }
 
@@ -41,6 +67,8 @@ struct SetView: View {
                 .onTapGesture {
                     viewModel.selectCard(card)
                 }
+                .matchedGeometryEffect(id: card.id, in: setCardSpace)
+                .transition(.identity)
         }
     }
 
